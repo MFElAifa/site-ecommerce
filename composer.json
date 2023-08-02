@@ -16,6 +16,7 @@
         "symfony/dotenv": "6.3.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.3.*",
+        "symfony/monolog-bundle": "^3.0",
         "symfony/runtime": "6.3.*",
         "symfony/string": "6.3.*",
         "symfony/twig-bundle": "6.3.*",
@@ -76,6 +77,9 @@
         "fakerphp/faker": "^1.23",
         "liorchamla/faker-prices": "^2.0",
         "mbezhanov/faker-provider-collection": "^2.0",
-        "symfony/maker-bundle": "^1.50"
+        "symfony/debug-bundle": "6.3.*",
+        "symfony/maker-bundle": "^1.50",
+        "symfony/stopwatch": "6.3.*",
+        "symfony/web-profiler-bundle": "6.3.*"
     }
 }
