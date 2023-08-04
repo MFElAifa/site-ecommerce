@@ -14,6 +14,24 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategoryController extends AbstractController
 {
+
+    public function __construct(protected CategoryRepository $categoryRepository)
+    {
+        
+    }
+
+    public function renderMenuList()
+    {
+        // 1. Aller chercher les catégories dans la base de données
+        $categories = $this->categoryRepository->findAll();
+
+        // 2. Renvoyer le rendu HTML sous la forme d'une Response ($this->render)
+        return $this->render('category/_menu.html.twig',[
+            'categories' => $categories
+        ]);
+    }
+
+
     #[Route('/admin/category/create', name: 'category_create')]
     public function create(Request $request, SluggerInterface $slugger, EntityManagerInterface $em): Response
     {
@@ -26,9 +44,7 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('product_category', [
-                'slug' => $category->getSlug()
-            ]);
+            return $this->redirectToRoute('homepage');
         }
 
         $formView = $form->createView();
@@ -46,14 +62,12 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class, $category);
         
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) { 
             $category->setSlug(strtolower($slugger->slug($category->getName())));
             $em->flush();
 
-            return $this->redirectToRoute('product_category', [
-                'slug' => $category->getSlug()
-            ]);
+            return $this->redirectToRoute('homepage');
         }
         
         $formView = $form->createView();
