@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
@@ -10,8 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 // use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
@@ -72,7 +77,8 @@ class ProductController extends AbstractController
     }
 
     #[Route("/admin/product/{id}/edit", name:"product_edit")]
-    public function edit($id, ProductRepository $productRepository,Request $request, SluggerInterface $slugger, EntityManagerInterface $em)
+    public function edit($id, ProductRepository $productRepository,Request $request, 
+        SluggerInterface $slugger, EntityManagerInterface $em)
     {
         $product = $productRepository->find($id);
 

@@ -25,7 +25,8 @@ class ProductType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du produit',
-                'attr' => ['placeholder' => 'Taper le nom du produit']
+                'attr' => ['placeholder' => 'Taper le nom du produit'],
+                'required' => false
             ])
             ->add('shortDescription', TextareaType::class, [
                 'label' => 'Description courte',
@@ -36,7 +37,8 @@ class ProductType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Taper le prix du produit en €'
                 ],
-                'divisor' => 100
+                'divisor' => 100,
+                'required' => false
             ])
             // ->add('price', PriceType::class, [
             //     'label' => 'Prix du produit',
