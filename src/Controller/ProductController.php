@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/{slug}', name: 'product_category')]
+    #[Route('/{slug}', name: 'product_category', priority:-1)]
     public function category(string $slug, CategoryRepository $categoryRepository): Response
     {
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
