@@ -32,3 +32,16 @@ services:
             $seuil: 100
 
     Cocur\Slugify\Slugify: ~
+
+    App\Entity\Product:
+        # redundant thanks to _defaults, but value is overridable on each service
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    App\Cart\CartItem:
+        autowire: true
+        autoconfigure: true
+        public: true
+        arguments:
+            $qty: \d+
