@@ -22,9 +22,7 @@ class PurchasePersister
     public function storePurchase(Purchase $purchase)
     {
         // 6. Nous allons lier l'utilisateur connecte (Security)
-        $purchase->setUser($this->security->getUser())
-            ->setPurchasedAt(new DateTime())
-            ->setTotal($this->cartService->getTotal());
+        $purchase->setUser($this->security->getUser());
 
         $this->em->persist($purchase);
         // 7. Nous allons la lier avec les produits qui sont dans le panier (cartService)

@@ -70,3 +70,10 @@ services:
     #             method: test2
     #         }
     #     ]
+
+    App\Doctrine\Listener\ProductSlugListener:
+        #tags: [{name: 'doctrine.event_listener', event: prePersist}]
+        tags: [{name: 'doctrine.orm.entity_listener', event: prePersist, entity: App\Entity\Product}]
+    
+    App\Doctrine\Listener\CategorySlugListener:
+        tags: [{name: 'doctrine.orm.entity_listener', event: prePersist, entity: App\Entity\Category}]
